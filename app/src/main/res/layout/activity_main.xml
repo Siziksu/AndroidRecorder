@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding15"
+    tools:ignore="MissingPrefix">
+
+    <TextClock
+        fontPath="fonts/Montserrat-Bold.ttf"
+        android:layout_above="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/textSize50"
+        android:format24Hour="HH:mm"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/padding15">
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:minWidth="@dimen/padding60"
+            android:textSize="@dimen/textSize14"
+            android:textColor="@drawable/button_text"
+            android:text="@string/start" />
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/start"
+            android:layout_marginStart="@dimen/padding20"
+            android:background="@null"
+            android:minWidth="@dimen/padding60"
+            android:textSize="@dimen/textSize14"
+            android:textColor="@drawable/button_text"
+            android:text="@string/stop" />
+    </RelativeLayout>
+
+    <TextView
+        fontPath="fonts/Montserrat-Light.ttf"
+        android:id="@+id/info"
+        android:layout_below="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/press_start_to_record"
+        android:textSize="@dimen/textSize16"
+        android:textStyle="normal"
+        android:textColor="@color/textColorPrimary" />
+</RelativeLayout>
