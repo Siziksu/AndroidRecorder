@@ -13,6 +13,8 @@ import javax.inject.Inject;
 
 public class Recorder {
 
+    public final static String AUDIO_FORMAT_EXTENSION = ".aac";
+
     @Inject
     FileManager fileManager;
 
@@ -56,9 +58,9 @@ public class Recorder {
         Print.info("Recording");
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        recorder.setOutputFile(fileManager.getFile());
+        recorder.setOutputFile(fileManager.getOutputAudioFile());
         try {
             recorder.prepare();
         } catch (IOException e) {
@@ -75,9 +77,9 @@ public class Recorder {
 
     private void close() {
         if (recorder != null) {
-            recorder.stop(); // stop recording
-            recorder.reset(); // set state to idle
-            recorder.release(); // release resources back to the system
+            recorder.stop();
+            recorder.reset();
+            recorder.release();
             recorder = null;
         }
     }

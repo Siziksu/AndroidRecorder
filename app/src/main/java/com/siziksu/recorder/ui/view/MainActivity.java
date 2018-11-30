@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     Recorder recorder;
+    @Inject
+    PermissionsManager permissionsManager;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         App.get().getApplicationComponent().inject(this);
-        PermissionsManager.checkPermissions(this);
+        permissionsManager.checkPermissions(this);
         initialize();
     }
 
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (!PermissionsManager.allGood(requestCode, grantResults)) { finish(); }
+        if (!permissionsManager.allGood(requestCode, grantResults)) { finish(); }
     }
 
     @Override

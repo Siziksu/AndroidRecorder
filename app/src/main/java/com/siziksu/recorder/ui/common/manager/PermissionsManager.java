@@ -5,13 +5,16 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
+import javax.inject.Inject;
+
 public final class PermissionsManager {
 
     private static final int PERMISSION_REQUEST_CODE = 1001;
 
-    private PermissionsManager() {}
+    @Inject
+    public PermissionsManager() {}
 
-    public static void checkPermissions(Activity context) {
+    public void checkPermissions(Activity context) {
         String[] PERMISSIONS = {
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO
@@ -19,7 +22,7 @@ public final class PermissionsManager {
         ActivityCompat.requestPermissions(context, PERMISSIONS, PERMISSION_REQUEST_CODE);
     }
 
-    public static boolean allGood(int requestCode, int[] grantResults) {
+    public boolean allGood(int requestCode, int[] grantResults) {
         boolean write = false;
         boolean record = false;
         switch (requestCode) {

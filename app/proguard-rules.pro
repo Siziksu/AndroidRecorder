@@ -19,3 +19,18 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#-keepattributes Signature
+#-keepattributes Exceptions
+
+# Retrolambda
+-dontwarn java.lang.invoke.*
+
+# Retrofit 2.X
+-dontwarn retrofit2.**
+
+# Okhttp3
+-dontwarn okhttp3.**
+
+# Okio
+-dontwarn okio.**

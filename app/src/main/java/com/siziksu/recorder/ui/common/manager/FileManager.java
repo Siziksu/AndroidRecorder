@@ -11,13 +11,13 @@ import javax.inject.Inject;
 
 public class FileManager {
 
-    private final static String AUDIO_FORMAT_EXTENSION = ".aac";
     private final static String AUDIO_FOLDER = "Recordings/";
+    private final static String FILE_NAME_PREFIX = "audio_recording_";
 
     @Inject
     public FileManager() {}
 
-    public String getFile() {
+    public String getOutputAudioFile() {
         createFolderIfNotExists();
         File file = composeFile();
         Print.info(String.format(Locale.getDefault(), "File being recorded: \"%s\"", file.getPath()));
@@ -27,13 +27,13 @@ public class FileManager {
     private void createFolderIfNotExists() {
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), AUDIO_FOLDER);
         if (!folder.exists()) {
-            Print.info(String.format(Locale.getDefault(), "Folder \"%s\" created: %b", folder.getPath(), folder.mkdirs()));
+            Print.info(String.format(Locale.getDefault(), "Folder \"%s\" %s", folder.getPath(), folder.mkdirs() ? "successfully created" : "could'nt be created"));
         }
     }
 
     private File composeFile() {
         int num = 0;
-        String name = "audio_recording_";
+        String name = FILE_NAME_PREFIX;
         File file = setFile(composeName(name, formatNumber(num)));
         while (file.exists()) {
             file = setFile(composeName(name, formatNumber(++num)));
@@ -42,7 +42,7 @@ public class FileManager {
     }
 
     private String composeName(String name, String num) {
-        return AUDIO_FOLDER + name + num + AUDIO_FORMAT_EXTENSION;
+        return AUDIO_FOLDER + name + num + Recorder.AUDIO_FORMAT_EXTENSION;
     }
 
     private String formatNumber(int number) {
