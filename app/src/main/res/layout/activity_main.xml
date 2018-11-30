@@ -5,16 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/padding15"
+    android:background="@color/darkerGrey"
+    android:keepScreenOn="true"
     tools:ignore="MissingPrefix">
 
     <TextClock
         fontPath="fonts/Montserrat-Bold.ttf"
+        android:layout_above="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize65"
+        android:format24Hour="HH:mm"
+        android:layout_centerHorizontal="true" />
+
+    <TextClock
+        fontPath="fonts/Montserrat-Light.ttf"
+        android:id="@+id/date"
         android:layout_above="@+id/buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/textSize50"
-        android:format24Hour="HH:mm"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize22"
+        android:format24Hour="MMM dd, yyyy"
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
@@ -57,5 +70,5 @@
         android:text="@string/press_start_to_record"
         android:textSize="@dimen/textSize16"
         android:textStyle="normal"
-        android:textColor="@color/textColorPrimary" />
+        android:textColor="@color/white" />
 </RelativeLayout>

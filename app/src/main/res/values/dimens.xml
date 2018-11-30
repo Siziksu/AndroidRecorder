@@ -48,5 +48,5 @@
     <dimen name="textSize28">28sp</dimen>
     <dimen name="textSize29">29sp</dimen>
     <dimen name="textSize30">30sp</dimen>
-    <dimen name="textSize50">50sp</dimen>
+    <dimen name="textSize65">65sp</dimen>
 </resources>

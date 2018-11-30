@@ -53,7 +53,7 @@ public class Recorder {
 
     private void startRecording() {
         listener.accept(R.string.recording);
-        Print.error("Recording");
+        Print.info("Recording");
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
@@ -69,7 +69,7 @@ public class Recorder {
 
     private void stopRecording() {
         listener.accept(R.string.press_start_to_record);
-        Print.error("Stopping");
+        Print.info("Stopping");
         close();
     }
 

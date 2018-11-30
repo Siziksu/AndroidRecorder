@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        getWindow().setStatusBarColor(getColor(R.color.darkerGrey));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         App.get().getApplicationComponent().inject(this);
