@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.siziksu.recorder.dagger.component.ApplicationComponent;
 import com.siziksu.recorder.dagger.component.DaggerApplicationComponent;
-import com.siziksu.recorder.dagger.module.ApplicationModule;
 
 public class App extends Application {
 
@@ -29,7 +28,6 @@ public class App extends Application {
 
     private void initDagger() {
         applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
                 .build();
         applicationComponent.inject(this);
     }

@@ -1,15 +1,16 @@
 package com.siziksu.recorder.ui.common.manager;
 
 import android.media.MediaRecorder;
-import android.view.View;
 
 import com.siziksu.recorder.R;
-import com.siziksu.recorder.common.function.Consumer;
+import com.siziksu.recorder.common.function.Action;
 import com.siziksu.recorder.common.utils.Print;
 
 import java.io.IOException;
 
 import javax.inject.Inject;
+
+import io.reactivex.annotations.NonNull;
 
 public class Recorder {
 
@@ -20,13 +21,13 @@ public class Recorder {
 
     private MediaRecorder recorder;
     private boolean recording;
-    private Consumer<Integer> listener;
+    private Action maxDurationListener;
 
     @Inject
     public Recorder() {}
 
-    public void setListener(Consumer<Integer> listener) {
-        this.listener = listener;
+    public void setListener(@NonNull Action maxDurationListener) {
+        this.maxDurationListener = maxDurationListener;
     }
 
     public void onDestroy() {
@@ -35,8 +36,8 @@ public class Recorder {
         }
     }
 
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void onClick(int view) {
+        switch (view) {
             case R.id.start:
                 if (recording) { return; }
                 startRecording();
@@ -54,13 +55,21 @@ public class Recorder {
     }
 
     private void startRecording() {
-        listener.accept(R.string.recording);
         Print.info("Recording");
         recorder = new MediaRecorder();
+        recorder.setAudioChannels(1);
+        recorder.setAudioSamplingRate(16000);
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         recorder.setOutputFile(fileManager.getOutputAudioFile());
+        recorder.setAudioEncodingBitRate(16000);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        recorder.setMaxDuration(20 * 60 * 1000); // 20 minutes
+        recorder.setOnInfoListener((mediaRecorder, what, extra) -> {
+            if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
+                maxDurationListener.execute();
+            }
+        });
         try {
             recorder.prepare();
         } catch (IOException e) {
@@ -70,7 +79,6 @@ public class Recorder {
     }
 
     private void stopRecording() {
-        listener.accept(R.string.press_start_to_record);
         Print.info("Stopping");
         close();
     }

@@ -7,7 +7,7 @@
     android:padding="@dimen/padding15"
     android:background="@color/darkerGrey"
     android:keepScreenOn="true"
-    tools:ignore="MissingPrefix">
+    tools:ignore="MissingPrefix,ContentDescription">
 
     <TextClock
         fontPath="fonts/Montserrat-Bold.ttf"
@@ -30,45 +30,32 @@
         android:format24Hour="MMM dd, yyyy"
         android:layout_centerHorizontal="true" />
 
-    <RelativeLayout
+    <RadioGroup
         android:id="@+id/buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_centerInParent="true"
         android:padding="@dimen/padding15">
 
-        <Button
+        <RadioButton
             android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:minWidth="@dimen/padding60"
+            android:button="@android:color/transparent"
+            android:background="@drawable/ic_action_rec_selector"
             android:textSize="@dimen/textSize14"
-            android:textColor="@drawable/button_text"
-            android:text="@string/start" />
+            android:textColor="@drawable/button_text" />
 
-        <Button
+        <RadioButton
             android:id="@+id/stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/start"
-            android:layout_marginStart="@dimen/padding20"
-            android:background="@null"
-            android:minWidth="@dimen/padding60"
+            android:layout_marginStart="@dimen/padding30"
+            android:button="@android:color/transparent"
+            android:background="@drawable/ic_action_stop_selector"
+            android:checked="true"
             android:textSize="@dimen/textSize14"
-            android:textColor="@drawable/button_text"
-            android:text="@string/stop" />
-    </RelativeLayout>
-
-    <TextView
-        fontPath="fonts/Montserrat-Light.ttf"
-        android:id="@+id/info"
-        android:layout_below="@+id/buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/press_start_to_record"
-        android:textSize="@dimen/textSize16"
-        android:textStyle="normal"
-        android:textColor="@color/white" />
+            android:textColor="@drawable/button_text" />
+    </RadioGroup>
 </RelativeLayout>
