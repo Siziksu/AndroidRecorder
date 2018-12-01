@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:padding="@dimen/padding15"
     android:background="@color/darkerGrey"
-    android:keepScreenOn="true"
     tools:ignore="MissingPrefix,ContentDescription">
 
     <TextClock
