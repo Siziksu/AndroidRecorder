@@ -22,7 +22,7 @@ public final class PermissionsManager {
         ActivityCompat.requestPermissions(context, PERMISSIONS, PERMISSION_REQUEST_CODE);
     }
 
-    public boolean allGood(int requestCode, int[] grantResults) {
+    public boolean areAllPermissionsGranted(int requestCode, int[] grantResults) {
         boolean write = false;
         boolean record = false;
         switch (requestCode) {

@@ -58,7 +58,7 @@ public class Recorder {
         Print.info("Recording");
         recorder = new MediaRecorder();
         recorder.setAudioChannels(1);
-        recorder.setAudioSamplingRate(16000);
+        recorder.setAudioSamplingRate(32000);
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         recorder.setOutputFile(fileManager.getOutputAudioFile());
